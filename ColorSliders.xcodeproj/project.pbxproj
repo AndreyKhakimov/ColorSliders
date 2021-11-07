@@ -76,14 +76,30 @@
 		42CB896127244F7A00F1AD90 /* ColorSliders */ = {
 			isa = PBXGroup;
 			children = (
-				42CB896227244F7A00F1AD90 /* AppDelegate.swift */,
-				42CB896427244F7A00F1AD90 /* SceneDelegate.swift */,
 				422AEE6B2735C6AB006E185A /* ViewControllers */,
 				422AEE6C2735C6CB006E185A /* Storyboards */,
-				42CB896B27244F7E00F1AD90 /* Assets.xcassets */,
-				42CB897027244F7E00F1AD90 /* Info.plist */,
+				42E7809C27385C9000B875EF /* App */,
+				42E7809B27385C3A00B875EF /* Resources */,
 			);
 			path = ColorSliders;
+			sourceTree = "<group>";
+		};
+		42E7809B27385C3A00B875EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				42CB896B27244F7E00F1AD90 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		42E7809C27385C9000B875EF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				42CB896227244F7A00F1AD90 /* AppDelegate.swift */,
+				42CB896427244F7A00F1AD90 /* SceneDelegate.swift */,
+				42CB897027244F7E00F1AD90 /* Info.plist */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +323,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ColorSliders/Info.plist;
+				INFOPLIST_FILE = ColorSliders/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,7 +341,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ColorSliders/Info.plist;
+				INFOPLIST_FILE = ColorSliders/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
