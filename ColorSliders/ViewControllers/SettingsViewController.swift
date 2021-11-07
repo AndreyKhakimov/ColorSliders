@@ -33,9 +33,13 @@ class SettingsViewController: UIViewController {
         greenColorTextField.delegate = self
         blueColorTextField.delegate = self
 
-        redColorTextField.keyboardType = UIKeyboardType.numberPad
-        greenColorTextField.keyboardType = UIKeyboardType.numberPad
-        blueColorTextField.keyboardType = UIKeyboardType.numberPad
+        redColorTextField.keyboardType = UIKeyboardType.decimalPad
+        greenColorTextField.keyboardType = UIKeyboardType.decimalPad
+        blueColorTextField.keyboardType = UIKeyboardType.decimalPad
+        
+        redColorTextField.addDoneButtonOnKeyboard()
+        greenColorTextField.addDoneButtonOnKeyboard()
+        blueColorTextField.addDoneButtonOnKeyboard()
         
         colorView.layer.cornerRadius = 10
         
@@ -126,15 +130,32 @@ extension SettingsViewController: UITextFieldDelegate {
         
         switch textField {
         case redColorTextField:
-            redSlider.value = floatColorNewValue
+            if floatColorNewValue > 1 || floatColorNewValue < 0 {
+                showAlert(title: "Incorrect color value", message: "Color should be set between 0 and 1")
+            } else {
+                redSlider.value = floatColorNewValue
+            }
         case greenColorTextField:
-            greenSlider.value = floatColorNewValue
+            if floatColorNewValue > 1 || floatColorNewValue < 0 {
+                showAlert(title: "Incorrect color value", message: "Color should be set between 0 and 1")
+            } else {
+                greenSlider.value = floatColorNewValue
+            }
         default:
-            blueSlider.value = floatColorNewValue
+            if floatColorNewValue > 1 || floatColorNewValue < 0 {
+                showAlert(title: "Incorrect color value", message: "Color should be set between 0 and 1")
+            } else {
+                blueSlider.value = floatColorNewValue
+            }
         }
         
         setValue(for: redColorLabel, greenColorLabel, blueColorLabel)
         changeViewColor()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
 }
 
@@ -150,3 +171,26 @@ extension UIColor {
         return (red, green, blue, alpha)
     }
 }
+
+extension SettingsViewController {
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+}
+
+extension UITextField {
+   func addDoneButtonOnKeyboard() {
+       let keyboardToolbar = UIToolbar()
+       keyboardToolbar.sizeToFit()
+       let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+           target: nil, action: nil)
+       let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+           target: self, action: #selector(resignFirstResponder))
+       keyboardToolbar.items = [flexibleSpace, doneButton]
+       self.inputAccessoryView = keyboardToolbar
+   }
+}
+
